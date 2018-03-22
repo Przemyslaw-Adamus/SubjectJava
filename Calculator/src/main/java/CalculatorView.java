@@ -28,10 +28,18 @@ public class CalculatorView implements Runnable,PropertyChangeListener {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                lastResult=evaluateFormula(formulaInput.getText());
+                try {
+                    lastResult=evaluateFormula(formulaInput.getText());
+                } catch (Exception e1) {
+                    JOptionPane.showMessageDialog(null, e1.getMessage(), "MessageError", + JOptionPane.ERROR_MESSAGE);
+                }
                 String printableResult = MessageFormat.format("{0} \n \t = {1} \n ************\n",formulaInput.getText(),lastResult);
-                historyTextArea.setText(historyTextArea.getText() + printableResult);
-                lastInput = formulaInput.getText();
+                if(lastResult!="empty")
+                {
+                    historyTextArea.setText(historyTextArea.getText() + printableResult);
+                    lastInput = formulaInput.getText();
+                    formulaInput.setText("");
+                }
                 formulaInput.setText("");
             }
         });
@@ -140,11 +148,19 @@ public class CalculatorView implements Runnable,PropertyChangeListener {
                             formulaInput.setText(lastInput);
                             break;
                         case KeyEvent.VK_ENTER:
-                            lastResult=evaluateFormula(formulaInput.getText());
+                            try {
+                                lastResult=evaluateFormula(formulaInput.getText());
+                            } catch (Exception e1) {
+                                JOptionPane.showMessageDialog(null, e1.getMessage(), "MessageError", + JOptionPane.ERROR_MESSAGE);
+                            }
                             String printableResult = MessageFormat.format("{0} \n \t = {1} \n ************\n",formulaInput.getText(),lastResult);
-                            historyTextArea.setText(historyTextArea.getText() + printableResult);
-                            lastInput = formulaInput.getText();
-                            formulaInput.setText("");
+                            if(lastResult!="empty")
+                            {
+                                historyTextArea.setText(historyTextArea.getText() + printableResult);
+                                lastInput = formulaInput.getText();
+                                formulaInput.setText("");
+                            }
+
                             break;
                     }
             }
@@ -222,10 +238,17 @@ public class CalculatorView implements Runnable,PropertyChangeListener {
         return listModel;
     }
 
-    private String evaluateFormula(String formula)
-    {
+    private String evaluateFormula(String formula) throws Exception {
         Expression expression = new Expression(formula);
-        Double results=expression.calculate();
-        return results.toString();
+        Double results=0.0;
+        if (expression.checkSyntax()) {
+            results=expression.calculate();
+            return results.toString();
+        }
+        else if(!expression.getExpressionString().isEmpty()) {
+            String errorMessage = expression.getErrorMessage();
+            throw new Exception(errorMessage);
+        }
+        return "empty";
     }
 }
