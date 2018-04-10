@@ -160,7 +160,6 @@ public class CalculatorView implements Runnable,PropertyChangeListener {
                                 lastInput = formulaInput.getText();
                                 formulaInput.setText("");
                             }
-
                             break;
                     }
             }
