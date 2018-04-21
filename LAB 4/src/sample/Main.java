@@ -137,9 +137,7 @@ public class Main extends Application {
                         if(item != null)
                         {
                             Tooltip tooltip = new Tooltip();
-                            tooltip.setText("Title: " + item.title + "\n" +
-                                            "Priority: " + item.priorityStatus + "\n" +
-                                            "Deadline: " + item.deadlineDate.toString() + "\n" +
+                            tooltip.setText("Priority: " + item.priorityStatus + "\n" +
                                             "Description: " + item.description + "\n" );
                             setTooltip(tooltip);
                             setText(item.title);
@@ -233,18 +231,7 @@ public class Main extends Application {
                 event.consume();
             }
         });
-        /* TASKS TO DO LIST */
-        toDoList.setOnDragDropped(new EventHandler<DragEvent>() {
-            @Override
-            public void handle(DragEvent dragEvent) {
-                List<Task> tasks = (List<Task>) dragEvent.getDragboard().getContent(taskDataFormat);
-                toDoItems.addAll(tasks);
-                dragEvent.acceptTransferModes(TransferMode.MOVE);
-                dragEvent.setDropCompleted(true);
-                dragEvent.consume();
-            }
-        });
-        /* DONE LIST */
+
         doneList.setOnDragDropped(new EventHandler<DragEvent>() {
             @Override
             public void handle(DragEvent event) {
@@ -253,6 +240,17 @@ public class Main extends Application {
                 event.acceptTransferModes(TransferMode.MOVE);
                 event.setDropCompleted(true);
                 event.consume();
+            }
+        });
+
+        toDoList.setOnDragDropped(new EventHandler<DragEvent>() {
+            @Override
+            public void handle(DragEvent dragEvent) {
+                List<Task> tasks = (List<Task>) dragEvent.getDragboard().getContent(taskDataFormat);
+                toDoItems.addAll(tasks);
+                dragEvent.acceptTransferModes(TransferMode.MOVE);
+                dragEvent.setDropCompleted(true);
+                dragEvent.consume();
             }
         });
     }
@@ -438,6 +436,7 @@ public class Main extends Application {
                         alert.setHeaderText("Cannot add task!");
                         alert.setContentText("Every field has to be filled!");
                         alert.showAndWait();
+                        //
                     }
                 }
 
@@ -464,6 +463,6 @@ public class Main extends Application {
                         "High Priority"
                 );
         comboBox = new ComboBox(options);
-        comboBox.setValue("Low Priority");
+        comboBox.setValue("SetPriority");
     }
 }

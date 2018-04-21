@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane alignment="center" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <columnConstraints>
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints maxWidth="100.0" minWidth="100.0" prefWidth="100.0" />
+      <ColumnConstraints maxWidth="0.0" minWidth="0.0" prefWidth="0.0" />
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints maxWidth="0.0" minWidth="0.0" prefWidth="0.0" />
+      <ColumnConstraints maxWidth="0.0" minWidth="0.0" prefWidth="0.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
+      <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
+      <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
+   </rowConstraints>
+   <children>
+      <Canvas fx:id="canvas" height="400.0" width="400.0" GridPane.columnIndex="1" GridPane.valignment="TOP">
+         <GridPane.margin>
+            <Insets top="-60.0" />
+         </GridPane.margin></Canvas>
+      <Button fx:id="buttonStart" mnemonicParsing="false" onAction="#handleRunBtnAction" prefHeight="50.0" prefWidth="100.0" text="START" GridPane.columnIndex="3" GridPane.valignment="TOP">
+         <GridPane.margin>
+            <Insets top="10.0" />
+         </GridPane.margin>
+      </Button>
+      <Button mnemonicParsing="false" onAction="#handleStopBtnAction" prefHeight="50.0" prefWidth="100.0" text="STOP" GridPane.columnIndex="3" GridPane.valignment="TOP">
+         <GridPane.margin>
+            <Insets top="70.0" />
+         </GridPane.margin>
+      </Button>
+      <TextField fx:id="textFieldNrPoints" text="2000000" GridPane.columnIndex="3" GridPane.valignment="TOP">
+         <GridPane.margin>
+            <Insets top="160.0" />
+         </GridPane.margin>
+      </TextField>
+      <Label text="Nr Points: " GridPane.columnIndex="3" GridPane.valignment="TOP">
+         <GridPane.margin>
+            <Insets top="130.0" />
+         </GridPane.margin>
+      </Label>
+      <Label text="Score:" GridPane.columnIndex="3" GridPane.valignment="TOP">
+         <GridPane.margin>
+            <Insets top="210.0" />
+         </GridPane.margin>
+      </Label>
+      <TextField fx:id="textFieldScore" editable="false" text="0.0" GridPane.columnIndex="3" GridPane.valignment="TOP">
+         <GridPane.margin>
+            <Insets top="240.0" />
+         </GridPane.margin>
+      </TextField>
+      <ProgressBar fx:id="progressBar" prefHeight="8.0" prefWidth="350.0" progress="0.0" GridPane.columnIndex="1" GridPane.rowIndex="14" GridPane.valignment="CENTER">
+         <GridPane.margin>
+            <Insets left="40.0" top="40.0" />
+         </GridPane.margin></ProgressBar>
+      <Separator orientation="VERTICAL" prefHeight="340.0" prefWidth="15.0" GridPane.columnIndex="2" />
+   </children>
+</GridPane>
